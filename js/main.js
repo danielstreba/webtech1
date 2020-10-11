@@ -1,42 +1,58 @@
 "use strict";
 
-const API_URL = "https://webtechcars.herokuapp.com";
-let STATE = {
-    cars: [],
-    manufacturers: []
-};
+$(document).ready(initApplication);
 
-$(document).ready(function () {
-    $(document).ajaxError(function(event, jqxhr) {
-        $(".error-message").html(jqxhr.status + " " + jqxhr.statusText);
-        $(".modal").show();
-        $(".container").hide();
-    });
+function initApplication() {
+    // error handling
+    $(document).ajaxError(errorHandler);
 
-    $("body").load("body.html", function () {
-        $("header").load("header.html");
-        $(".container").load("content.html");
-        $("footer").load("footer.html");
+    // initialize body
+    $(document.body).load("body.html", initBody);
 
-        $(".button-reload").on("click", function () {
-            location.reload();
-        });
+    // routing
+    $(window).on("hashchange", loadPage);
 
-        getCars();
-        getManufacturers();
-    });
-});
+    getCars();
+    getManufacturers();
+}
 
-function getCars() {
-    $.get(API_URL + "/api/cars", function (res) {
-        STATE.cars = res;
-        console.log(res);
+function errorHandler(_, jqxhr) {
+    $(".error-message").html(jqxhr.status + " " + jqxhr.statusText);
+    $(".modal").show();
+    $(".container").hide();
+}
+
+function initBody() {
+    $("header").load("header.html");
+    loadPage();
+    $("footer").load("footer.html");
+}
+
+function loadPage() {
+    const page = window.location.hash
+        ? window.location.hash.substring(1)
+        : "home";
+
+    $(".container").load(page + ".html", function () {
+        $("a.active").removeClass("active");
+        $("a." + page).addClass("active");
+        initPage(page);
     });
 }
 
-function getManufacturers() {
-    $.get(API_URL + "/api/manufacturers", function (res) {
-        STATE.cars = res;
-        console.log(res);
-    });
+function initPage(page) {
+    switch (page) {
+        case "home":
+            break;
+        case "manufacturers":
+            initManufacturers();
+            break;
+        case "cars":
+            initCars();
+            break;
+        default:
+            console.error("Invalid page");
+            break;
+    }
 }
+

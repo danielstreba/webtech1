@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap');
 
 html,
 body {
     margin: 0;
     padding: 0;
     font-family: "Open Sans", sans-serif;
+    background-color: #f6f8fa;
+}
+
+h1, .title {
+    font-family: 'Zilla Slab', serif;
 }
 
 input[type="button"] {
@@ -14,22 +20,46 @@ input[type="button"] {
 
 header {
     overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 20px;
+    background-color: #24292e;
+    color: white;
 }
 
 header .title {
     font-size: 25px;
     line-height: 25px;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 header .header-right {
     float: right;
 }
 
+header a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 0 10px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+header a:hover {
+    color: #ffffffb3;
+}
+
+header a.active {
+    color: #4ccc70;
+}
+
 .container {
-    width: 75%;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.container-60 {
+    width: 60%;
     margin: 20px auto;
 }
 
@@ -63,7 +93,7 @@ header .header-right {
 
 footer {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     padding: 5px;
     text-align: center;
 }
