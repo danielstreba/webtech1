@@ -6,14 +6,16 @@ function initApplication() {
     // error handling
     $(document).ajaxError(errorHandler);
 
+    $(document).on({
+        ajaxStart: startSpinner,
+        ajaxStop: stopSpinner
+    });
+
     // initialize body
     $(document.body).load("body.html", initBody);
 
     // routing
     $(window).on("hashchange", loadPage);
-
-    getCars();
-    getManufacturers();
 }
 
 function errorHandler(_, jqxhr) {
@@ -56,3 +58,12 @@ function initPage(page) {
     }
 }
 
+function startSpinner() {
+    $("body>:not(.spinner-wrapper)").addClass("hidden");
+    $(".spinner-wrapper").removeClass("hidden");
+}
+
+function stopSpinner() {
+    $("body>:not(.spinner-wrapper)").removeClass("hidden");
+    $(".spinner-wrapper").addClass("hidden");
+}

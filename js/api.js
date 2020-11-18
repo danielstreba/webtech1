@@ -12,20 +12,22 @@ async function getAll() {
     return STATE;
 }
 
-function getCars() {
+async function getCars() {
+    console.log("get cars");
     return $.get({
-        url: API_URL + "/api/cars",
-        headers: {
-            "Access-Control-Allow-Origin": "*"
-        }
+        url: API_URL + "/api/cars"
     });
 }
 
 function getManufacturers() {
+    console.log("get manufacturers");
     return $.get({
-        url: API_URL + "/api/manufacturers",
-        headers: {
-            "Access-Control-Allow-Origin": "*"
-        }
+        url: API_URL + "/api/manufacturers"
     });
+}
+
+async function initState() {
+    if (STATE.cars.length === 0 || STATE.cars.length === 0) {
+        await getAll();
+    }
 }

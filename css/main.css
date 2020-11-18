@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap");
 
 html,
 body {
@@ -9,8 +9,9 @@ body {
     background-color: #f6f8fa;
 }
 
-h1, .title {
-    font-family: 'Zilla Slab', serif;
+h1,
+.title {
+    font-family: "Zilla Slab", serif;
 }
 
 input[type="button"] {
@@ -54,12 +55,12 @@ header a.active {
 }
 
 .container {
-    width: 50%;
+    width: 75%;
     margin: 20px auto;
 }
 
 .container-60 {
-    width: 60%;
+    width: 75%;
     margin: 20px auto;
 }
 
@@ -96,4 +97,131 @@ footer {
     background-color: #ffffff;
     padding: 5px;
     text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    border: 16px solid rgb(175, 175, 175);
+    border-top: 16px solid #4ccc70;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container-inside {
+    margin: 25px 0;
+}
+
+.container-inside img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.manufacturer-list {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.manufacturer-item {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.manufacturer-item-select {
+    background-color: white;
+}
+
+.manufacturer-item-add {
+    background-color: #24292e;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.manufacturer-item:hover {
+    color: #4ccc70;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.manufacturer-container {
+    display: flex;
+}
+
+.manufacturer-details {
+    flex: 1;
+    background-color: white;
+    margin-left: 10px;
+    padding: 20px;
+}
+
+form h2 {
+    margin: -20px;
+    background-color: #29b14f;
+    color: white;
+    padding: 10px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-button {
+    padding: 10px;
+    background-color: #24292e;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.form-button-submit {
+    background-color: #29b14f;
+}
+
+.form-button-delete {
+    background-color: #ca3131;
+}
+
+.form-line {
+    margin-bottom: 10px;
+}
+
+.form-button:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.form-input {
+    float: right;
+    width: 200px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
 }
