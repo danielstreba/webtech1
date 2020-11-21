@@ -18,10 +18,10 @@ async function initManufacturers() {
 
     buildList();
 
-    $(".manufacturer-details form").on("submit",
+    $(".item-details form").on("submit",
         (event) => {
             event.preventDefault();
-            const data = serializeForm($(".manufacturer-details form"));
+            const data = serializeForm($(".item-details form"));
             submitManufacturer(data);
         }
     )
@@ -29,18 +29,17 @@ async function initManufacturers() {
 
 function buildList() {
     // building list items with jQuery
-    const list = $(".manufacturer-list");
-    $(".manufacturer-item-select").remove();
+    const list = $(".item-list");
+    $(".list-item-select").remove();
     $.each(API_STATE.manufacturers, (i, manufacturer) => {
         const id = manufacturer._id;
         list.append(`
-        <input type="button" class="manufacturer-item manufacturer-item-select"
-        data-manufacturer-id="${id}" value="${manufacturer.name ? manufacturer.name : "<üres>"} (${id.substring(id.length - 4)})
-        "/>`);
+        <button type="button" class="list-item list-item-select"
+        data-manufacturer-id="${id}">${manufacturer.name ? manufacturer.name : "<üres>"} <span class="list-item-select__right">${id.substring(id.length - 4)}</span></button>`);
     })
 
     // adding onclick handler to the previously built list items
-    $(".manufacturer-item-select").on("click",
+    $(".list-item-select").on("click",
         (event) => showDetails($(event.currentTarget).data("manufacturer-id"))
     );
 }
@@ -54,18 +53,18 @@ function showDetails(id) {
     MANUFACTURER_STATE.country.val(manufacturer.country);
     MANUFACTURER_STATE.founded.val(manufacturer.founded);
 
-    $(".manufacturer-details form").removeClass("hidden");
-    $(".manufacturer-details .placeholder").addClass("hidden");
+    $(".item-details form").removeClass("hidden");
+    $(".item-details .placeholder").addClass("hidden");
 
-    $(".manufacturer-item-select").removeClass("manufacturer-item-select-active");
-    $(".manufacturer-item-add").removeClass("manufacturer-item-add-active");
+    $(".list-item-select").removeClass("list-item-select-active");
+    $(".list-item-add").removeClass("list-item-add-active");
 
     if (id) {
         $(".form-button-delete").removeClass("hidden");
-        $(`.manufacturer-item-select[data-manufacturer-id="${id}"]`).addClass("manufacturer-item-select-active");
+        $(`.list-item-select[data-manufacturer-id="${id}"]`).addClass("list-item-select-active");
     } else {
         $(".form-button-delete").addClass("hidden");
-        $(".manufacturer-item-add").addClass("manufacturer-item-add-active");
+        $(".list-item-add").addClass("list-item-add-active");
     }
 }
 
@@ -89,11 +88,11 @@ async function deleteManufacturer() {
     showNotification("Gyártó sikeresen törölve.");
     buildList();
 
-    $(".manufacturer-details form").addClass("hidden");
-    $(".manufacturer-details .placeholder").removeClass("hidden");
+    $(".item-details form").addClass("hidden");
+    $(".item-details .placeholder").removeClass("hidden");
 
-    $(".manufacturer-item-select").removeClass("manufacturer-item-select-active");
-    $(".manufacturer-item-add").removeClass("manufacturer-item-add-active");
+    $(".list-item-select").removeClass("list-item-select-active");
+    $(".list-item-add").removeClass("list-item-add-active");
 }
 
 function serializeForm(form) {

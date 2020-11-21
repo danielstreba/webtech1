@@ -82,53 +82,66 @@ img {
     height: auto;
 }
 
-.manufacturer-list {
+.item-list {
     display: flex;
     flex-direction: column;
     width: 250px;
 }
 
-.manufacturer-item {
+.list-item {
     margin-bottom: 10px;
     padding: 10px;
 }
 
-.manufacturer-item-select {
+.list-item-select {
     background-color: white;
     text-align: left;
 }
 
-.manufacturer-item-add {
+.list-item-select__right {
+    float: right;
+    color: grey;
+    font-size: small;
+}
+
+.placeholder {
+    text-align: center;
+    padding: 50px;
+    color: grey;
+}
+
+.list-item-add {
     background-color: var(--black-darker);
     color: var(--white-medium);
     font-weight: bold;
     text-align: center;
 }
 
-input {
+input, button {
     font-family: inherit;
     font-size: 100%;
     outline: none;
 }
 
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+button {
     border: 0;
 }
 
-.manufacturer-item-add:hover,
-.manufacturer-item-add-active {
+.list-item-add:hover,
+.list-item-add-active {
     color: var(--green);
 }
 
-.manufacturer-item-select:hover,
-.manufacturer-item-select-active {
+.list-item-select:hover,
+.list-item-select-active {
     background-color: var(--white-darker);
 }
 
-.manufacturer-item:hover,
-.manufacturer-item-select-active,
-.manufacturer-item-add-active {
+.list-item:hover,
+.list-item-select-active,
+.list-item-add-active {
     cursor: pointer;
     font-weight: bold;
 }
@@ -137,7 +150,7 @@ input[type="button"] {
     display: flex;
 }
 
-.manufacturer-details {
+.item-details {
     flex: 1;
     background-color: white;
     margin-left: 10px;

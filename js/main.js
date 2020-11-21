@@ -62,10 +62,13 @@ function startSpinner() {
 }
 
 function stopSpinner() {
-    if (--API_STATE.runningRequests <= 0) {
-        $(".body-wrapper").removeClass("hidden");
-        $(".spinner-wrapper").addClass("hidden");
-    }
+    // remove setTimeout when async/await fixed
+    setTimeout(() => {
+        if (--API_STATE.runningRequests <= 0) {
+            $(".body-wrapper").removeClass("hidden");
+            $(".spinner-wrapper").addClass("hidden");
+        }
+    }, 0);
 }
 
 function showNotification(message) {
