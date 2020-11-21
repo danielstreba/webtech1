@@ -117,7 +117,7 @@ img {
     text-align: center;
 }
 
-input, button {
+input, button, select {
     font-family: inherit;
     font-size: 100%;
     outline: none;
@@ -127,6 +127,11 @@ input[type="submit"],
 input[type="button"],
 button {
     border: 0;
+}
+
+#car-manufacturer {
+    width: 257px;
+    height: 27px;
 }
 
 .list-item-add:hover,
@@ -146,7 +151,7 @@ button {
     font-weight: bold;
 }
 
-.manufacturer-container {
+.manufacturer-container, .car-container {
     display: flex;
 }
 
@@ -198,7 +203,7 @@ form h2 {
     color: var(--black-darker);
 }
 
-.form-line input {
+.form-line input, .form-line select {
     float: right;
     width: 250px;
     height: 20px;

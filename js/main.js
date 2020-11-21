@@ -1,8 +1,8 @@
 "use strict";
 
-$(document).ready(initApplication);
+$(initApp);
 
-function initApplication() {
+function initApp() {
     // error handling
     $(document).ajaxError(errorHandler);
 
@@ -56,8 +56,11 @@ function initPage(page) {
 
 function startSpinner() {
     if (API_STATE.runningRequests++ <= 0) {
-        $(".body-wrapper").addClass("hidden");
-        $(".spinner-wrapper").removeClass("hidden");
+        // remove setTimeout when async/await fixed
+        setTimeout(() => {
+            $(".body-wrapper").addClass("hidden");
+            $(".spinner-wrapper").removeClass("hidden");
+        }, 45);
     }
 }
 
@@ -72,12 +75,14 @@ function stopSpinner() {
 }
 
 function showNotification(message) {
-    const snackbar = $("#snackbar");
-    if (!snackbar.hasClass("show")) {
-        snackbar.html(message);
-        snackbar.addClass("show");
+    const $snackbar = $("#snackbar");
+    if (!$snackbar.hasClass("show")) {
+        $snackbar.html(message);
+        $snackbar.addClass("show");
         setTimeout(() => {
-            snackbar.removeClass("show");
+            $snackbar.removeClass("show");
         }, 3000);
     }
 }
+
+

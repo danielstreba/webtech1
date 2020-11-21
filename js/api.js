@@ -49,3 +49,26 @@ async function deleteManufacturerApi(id) {
     });
     await getManufacturers();
 }
+
+async function postCar(form) {
+    console.log(form);
+    await $.post({
+        url: API_URL + "/api/cars",
+        data: JSON.stringify(form),
+        contentType: "application/json"
+    });
+    await getCars();
+}
+
+async function patchCar(form, id) {
+    await deleteCarApi(id);
+    await postCar(form);
+}
+
+async function deleteCarApi(id) {
+    await $.ajax({
+        url: API_URL + "/api/cars/" + id,
+        type: "DELETE"
+    });
+    await getCars();
+}

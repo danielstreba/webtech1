@@ -1,3 +1,47 @@
-<div class="container-inside">
-    <h1>Autók</h1>
+<h1>Autók</h1>
+<div class="car-container">
+    <div class="item-list">
+        <input type="button" value="Új hozzáadása" onclick="showCarDetails()" class="list-item list-item-add"/>
+    </div>
+    <div class="item-details">
+        <form class="hidden">
+            <h2>Autó</h2>
+            <div class="form-line">
+                <label for="car-name">Név:</label>
+                <input name="name" required type="text" id="car-name" placeholder="Model 3"/>
+            </div>
+            <div class="form-line">
+                <label for="car-consumption">Fogyasztás:</label>
+                <input name="consumption" required type="text" id="car-consumption" placeholder="11.9kWh/100km"/>
+            </div>
+            <div class="form-line">
+                <label for="car-color">Szín:</label>
+                <input name="color" required type="text" id="car-color" placeholder="red"/>
+            </div>
+            <div class="form-line">
+                <label for="car-manufacturer">Gyártó:</label>
+                <select required name="manufacturer" id="car-manufacturer">
+                </select>
+            </div>
+            <div class="form-line">
+                <label for="car-available">Elérhető darabszám:</label>
+                <input name="avaiable" required type="number" id="car-available" placeholder="42"/>
+            </div>
+            <div class="form-line">
+                <label for="car-year">Megjelenési év:</label>
+                <input name="year" required type="number" id="car-year" placeholder="2017"/>
+            </div>
+            <div class="form-line">
+                <label for="car-horsepower">Lóerő:</label>
+                <input name="horsepower" required type="number" id="car-horsepower" placeholder="450"/>
+            </div>
+            <div class="form-footer">
+                <input type="submit" class="form-button form-button-submit" value="Mentés"/>
+                <input type="button" onclick="deleteCar()" class="form-button form-button-delete" value="Törlés"/>
+            </div>
+        </form>
+        <div class="placeholder">
+            Válassz egy meglévő autót vagy adj hozzá egy újat!
+        </div>
+    </div>
 </div>
