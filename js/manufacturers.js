@@ -76,14 +76,17 @@ async function submitManufacturer(data) {
         await postManufacturer(data);
     }
 
+    showNotification(`Gyártó sikeresen ${MANUFACTURER_STATE.id ? "módosítva" : "létrehozva"}.`);
     buildList();
-
-    showDetails(API_STATE.manufacturers[API_STATE.manufacturers.length - 1]._id);
+    const manufacturers = API_STATE.manufacturers;
+    manufacturers.sort((a, b) => a._id.localeCompare(b._id));
+    showDetails(manufacturers[manufacturers.length - 1]._id);
 }
 
 async function deleteManufacturer() {
     await deleteManufacturerApi(MANUFACTURER_STATE.id);
 
+    showNotification("Gyártó sikeresen törölve.");
     buildList();
 
     $(".manufacturer-details form").addClass("hidden");

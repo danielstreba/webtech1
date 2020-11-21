@@ -1,0 +1,25 @@
+.modal {
+    background-color: var(--red);
+    color: var(--white-medium);
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.modal input {
+    float: right;
+    background-color: transparent;
+    color: var(--white-medium);
+    border: 2px solid var(--white-medium);
+}
+
+.modal input:hover {
+    background-color: var(--white-darker);
+    color: var(--red);
+    cursor: pointer;
+}
+
+.error-message {
+    font-style: italic;
+}

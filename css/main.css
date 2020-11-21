@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
 :root {
-    --main-bg-color: #f7f7f7;
-    --main-fg-color: #404040;
-    --main-bg-hover-color: #dedede;
-    --main-color: #4ccc70;
+    --white-medium: #f7f7f7;
+    --black-medium: #404040;
+    --white-darker: #dedede;
+    --green: #4ccc70;
+    --black-darker: #24292e;
+    --red: #ca3131;
 }
 
 html,
@@ -13,16 +15,16 @@ body {
     padding: 0;
     font-family: "Open Sans", sans-serif;
     height: 100%;
-    background-color: var(--main-bg-color);
-    color: var(--main-fg-color);
+    background-color: var(--white-medium);
+    color: var(--black-medium);
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #24292e;
-    color: var(--main-bg-color);
+    background-color: var(--black-darker);
+    color: var(--white-medium);
     padding: 15px;
 }
 
@@ -34,46 +36,21 @@ header h1 {
 }
 
 header a {
-    color: var(--main-bg-color);
+    color: var(--white-medium);
     text-decoration: none;
     padding: 0 10px;
 }
 
-header a:hover {
-    color: var(--main-bg-hover-color);
+header a.active, header a:hover {
+    color: var(--green);
 }
 
 header a.active {
-    color: var(--main-color);
+    font-weight: bold;
 }
 
 .hidden {
     display: none !important;
-}
-
-.spinner-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.spinner {
-    border: 16px solid var(--main-bg-hover-color);
-    border-top: 16px solid var(--main-color);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 .body-wrapper {
@@ -122,8 +99,8 @@ img {
 }
 
 .manufacturer-item-add {
-    background-color: #24292e;
-    color: white;
+    background-color: var(--black-darker);
+    color: var(--white-medium);
     font-weight: bold;
     text-align: center;
 }
@@ -139,15 +116,19 @@ input[type="button"] {
     border: 0;
 }
 
-.manufacturer-item-add:hover, .manufacturer-item-add-active {
-    color: var(--main-color);
+.manufacturer-item-add:hover,
+.manufacturer-item-add-active {
+    color: var(--green);
 }
 
-.manufacturer-item-select:hover, .manufacturer-item-select-active {
-    background-color: var(--main-bg-hover-color);
+.manufacturer-item-select:hover,
+.manufacturer-item-select-active {
+    background-color: var(--white-darker);
 }
 
-.manufacturer-item:hover, .manufacturer-item-select-active, .manufacturer-item-add-active {
+.manufacturer-item:hover,
+.manufacturer-item-select-active,
+.manufacturer-item-add-active {
     cursor: pointer;
     font-weight: bold;
 }
@@ -165,74 +146,49 @@ input[type="button"] {
 
 form h2 {
     margin: -20px;
-    background-color: var(--main-color);
-    color: white;
-    padding: 10px;
+    background-color: var(--green);
+    color: var(--white-medium);
+    padding: 12.5px;
     padding-left: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .form-footer {
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
 }
 
 .form-button {
     padding: 10px;
-    background-color: #24292e;
-    color: white;
+    background-color: var(--black-darker);
+    color: var(--white-medium);
     font-weight: bold;
     text-align: center;
-    margin: 0 5px;
+    margin: 0 12.5px;
 }
 
 .form-button-submit {
-    background-color: var(--main-color);
+    background-color: var(--green);
 }
 
 .form-button-delete {
-    background-color: #ca3131;
+    background-color: var(--red);
 }
 
 .form-line {
-    margin-bottom: 10px;
+    margin-bottom: 12.5px;
+    height: 22.5px;
 }
 
 .form-button:hover {
     cursor: pointer;
-    color: black;
+    color: var(--black-darker);
 }
 
 .form-line input {
     float: right;
-    width: 200px;
+    width: 250px;
     height: 20px;
-    padding: 0;
+    padding: 1.5px;
     margin: 0;
-}
-
-.modal {
-    background-color: #ca3131;
-    color: var(--main-bg-color);
-    width: 60%;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 4px;
-}
-
-.modal input {
-    float: right;
-    background-color: transparent;
-    color: var(--main-bg-color);
-    border: 2px solid var(--main-bg-color);
-}
-
-.modal input:hover {
-    background-color: var(--main-bg-hover-color);
-    color: #ca3131;
-    cursor: pointer;
-}
-
-.error-message {
-    font-style: italic;
 }

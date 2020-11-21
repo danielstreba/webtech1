@@ -67,3 +67,14 @@ function stopSpinner() {
         $(".spinner-wrapper").addClass("hidden");
     }
 }
+
+function showNotification(message) {
+    const snackbar = $("#snackbar");
+    if (!snackbar.hasClass("show")) {
+        snackbar.html(message);
+        snackbar.addClass("show");
+        setTimeout(() => {
+            snackbar.removeClass("show");
+        }, 3000);
+    }
+}

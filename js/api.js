@@ -18,7 +18,7 @@ async function getCars() {
     API_STATE.cars = await $.get({
         url: API_URL + "/api/cars"
     });
-    API_STATE.cars.sort((a, b) => a.name.localeCompare(b.name));
+    API_STATE.manufacturers.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 async function getManufacturers() {
@@ -43,8 +43,9 @@ async function patchManufacturer(form, id) {
 }
 
 async function deleteManufacturerApi(id) {
-    await $.post({
-        url: API_URL + "/api/manufacturers/" + id
+    await $.ajax({
+        url: API_URL + "/api/manufacturers/" + id,
+        type: "DELETE"
     });
     await getManufacturers();
 }
