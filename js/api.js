@@ -3,31 +3,48 @@
 const API_URL = "https://webtechcars.herokuapp.com";
 const API_STATE = {
     cars: [],
-    manufacturers: []
+    manufacturers: [],
+    runningRequests: 0
 };
 
-async function getAll() {
-    API_STATE.cars = await getCars();
-    API_STATE.manufacturers = await getManufacturers();
-    return API_STATE;
+async function initApiState() {
+    if (API_STATE.cars.length === 0)
+        await getCars();
+    if (API_STATE.manufacturers.length === 0)
+        await getManufacturers();
 }
 
 async function getCars() {
-    console.log("get cars");
-    return $.get({
+    API_STATE.cars = await $.get({
         url: API_URL + "/api/cars"
     });
+    API_STATE.cars.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function getManufacturers() {
-    console.log("get manufacturers");
-    return $.get({
+async function getManufacturers() {
+    API_STATE.manufacturers = await $.get({
         url: API_URL + "/api/manufacturers"
     });
+    API_STATE.manufacturers.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-async function initState() {
-    if (API_STATE.cars.length === 0 || API_STATE.cars.length === 0) {
-        await getAll();
-    }
+async function postManufacturer(form) {
+    await $.post({
+        url: API_URL + "/api/manufacturers",
+        data: JSON.stringify(form),
+        contentType: "application/json"
+    });
+    await getManufacturers();
+}
+
+async function patchManufacturer(form, id) {
+    await deleteManufacturerApi(id);
+    await postManufacturer(form);
+}
+
+async function deleteManufacturerApi(id) {
+    await $.post({
+        url: API_URL + "/api/manufacturers/" + id
+    });
+    await getManufacturers();
 }

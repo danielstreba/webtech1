@@ -4,19 +4,19 @@
         <input type="button" value="Új hozzáadása" onclick="showDetails()" class="manufacturer-item manufacturer-item-add"/>
     </div>
     <div class="manufacturer-details">
-        <form class="hidden" onsubmit="submitManufacturer();return false">
+        <form class="hidden">
             <h2>Gyártó</h2>
             <div class="form-line">
-                Név:
-                <input name="name" required class="form-input" type="text" id="manufacturer-name">
+                <label for="manufacturer-name">Név:</label>
+                <input name="name" required type="text" id="manufacturer-name" placeholder="Tesla">
             </div>
             <div class="form-line">
-                Ország
-                <input name="country" required class="form-input" type="text" id="manufacturer-country">
+                <label for="manufacturer-country">Ország:</label>
+                <input name="country" required type="text" id="manufacturer-country" placeholder="USA">
             </div>
             <div class="form-line">
-                Alapítási dátum:
-                <input name="founded" required class="form-input" type="date" id="manufacturer-founded">
+                <label for="manufacturer-founded">Alapítási dátum:</label>
+                <input name="founded" required type="text" id="manufacturer-founded" placeholder="January 1, 1970">
             </div>
             <div class="form-footer">
                 <input type="submit" class="form-button form-button-submit" value="Mentés"/>

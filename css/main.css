@@ -139,15 +139,15 @@ input[type="button"] {
     border: 0;
 }
 
-.manufacturer-item-add:hover {
+.manufacturer-item-add:hover, .manufacturer-item-add-active {
     color: var(--main-color);
 }
 
-.manufacturer-item-select:hover {
+.manufacturer-item-select:hover, .manufacturer-item-select-active {
     background-color: var(--main-bg-hover-color);
 }
 
-.manufacturer-item:hover {
+.manufacturer-item:hover, .manufacturer-item-select-active, .manufacturer-item-add-active {
     cursor: pointer;
     font-weight: bold;
 }
@@ -203,7 +203,7 @@ form h2 {
     color: black;
 }
 
-.form-input {
+.form-line input {
     float: right;
     width: 200px;
     height: 20px;
