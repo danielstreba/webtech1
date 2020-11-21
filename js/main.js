@@ -6,13 +6,14 @@ function initApplication() {
     // error handling
     $(document).ajaxError(errorHandler);
 
+    // loading spinner
     $(document).on({
         ajaxStart: startSpinner,
         ajaxStop: stopSpinner
     });
 
     // initialize body
-    $(document.body).load("body.html", initBody);
+    $(document.body).load("body.html", loadPage);
 
     // routing
     $(window).on("hashchange", loadPage);
@@ -20,14 +21,8 @@ function initApplication() {
 
 function errorHandler(_, jqxhr) {
     $(".error-message").html(jqxhr.status + " " + jqxhr.statusText);
-    $(".modal").show();
-    $(".container").hide();
-}
-
-function initBody() {
-    $("header").load("header.html");
-    loadPage();
-    $("footer").load("footer.html");
+    $(".modal").removeClass("hidden");
+    $(".container").addClass("hidden");
 }
 
 function loadPage() {
@@ -35,9 +30,10 @@ function loadPage() {
         ? window.location.hash.substring(1)
         : "home";
 
-    $(".container").load(page + ".html", function () {
+    $(".container").load(page + ".html", () => {
         $("a.active").removeClass("active");
-        $("a." + page).addClass("active");
+        $("a[href=\"#" + page + "\"").addClass("active");
+
         initPage(page);
     });
 }
@@ -59,11 +55,11 @@ function initPage(page) {
 }
 
 function startSpinner() {
-    $("body>:not(.spinner-wrapper)").addClass("hidden");
+    $("body .body-wrapper").addClass("hidden");
     $(".spinner-wrapper").removeClass("hidden");
 }
 
 function stopSpinner() {
-    $("body>:not(.spinner-wrapper)").removeClass("hidden");
+    $("body > .body-wrapper").removeClass("hidden");
     $(".spinner-wrapper").addClass("hidden");
 }

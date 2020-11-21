@@ -1,15 +1,15 @@
 "use strict";
 
 const API_URL = "https://webtechcars.herokuapp.com";
-const STATE = {
+const API_STATE = {
     cars: [],
     manufacturers: []
 };
 
 async function getAll() {
-    STATE.cars = await getCars();
-    STATE.manufacturers = await getManufacturers();
-    return STATE;
+    API_STATE.cars = await getCars();
+    API_STATE.manufacturers = await getManufacturers();
+    return API_STATE;
 }
 
 async function getCars() {
@@ -27,7 +27,7 @@ function getManufacturers() {
 }
 
 async function initState() {
-    if (STATE.cars.length === 0 || STATE.cars.length === 0) {
+    if (API_STATE.cars.length === 0 || API_STATE.cars.length === 0) {
         await getAll();
     }
 }
