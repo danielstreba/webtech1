@@ -1,10 +1,10 @@
 <h1>Gyártók</h1>
 <div class="manufacturer-container">
     <div class="item-list">
-        <input type="button" value="Új hozzáadása" onclick="showDetails()" class="list-item list-item-add"/>
+        <input type="button" value="Új hozzáadása" onclick="showManufacturerDetails()" class="list-item list-item-add"/>
     </div>
     <div class="item-details">
-        <form class="hidden">
+        <form>
             <h2>Gyártó</h2>
             <div class="form-line">
                 <label for="manufacturer-name">Név:</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="form-footer">
                 <input type="submit" class="form-button form-button-submit" value="Mentés"/>
-                <input type="button" onclick="deleteManufacturer()" class="form-button form-button-delete" value="Törlés"/>
+                <input type="button" onclick="removeManufacturer()" class="form-button form-button-delete" value="Törlés"/>
             </div>
         </form>
         <div class="placeholder">

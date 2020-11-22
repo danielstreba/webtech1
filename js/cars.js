@@ -8,8 +8,7 @@ const CAR_STATE = {
     $available: undefined,
     $year: undefined,
     $horsepower: undefined,
-    id: undefined,
-    manufacturerNames: []
+    id: undefined
 };
 
 async function initCars() {
@@ -26,6 +25,8 @@ async function initCars() {
     CAR_STATE.$horsepower = $("input[name=horsepower]");
 
     buildCarsList();
+
+    $(".item-details form").hide();
 
     $(".item-details form").on("submit",
         (event) => {
@@ -44,12 +45,15 @@ function buildCarsList() {
         const id = car._id;
         $list.append(`
         <button type="button" class="list-item list-item-select"
-        data-car-id="${id}">${car.name ? car.name : "<üres>"} <span class="list-item-select__right">${id.substring(id.length - 4)}</span></button>`);
+        data-car-id="${id}">${car.name ? `${car.manufacturer} ${car.name}` : "<üres>"} <span class="list-item-select__right">${id.substring(id.length - 4)}</span></button>`);
     })
 
     CAR_STATE.$manufacturer.children().remove();
-    CAR_STATE.manufacturerNames = [...new Set(API_STATE.manufacturers.map(x => x.name))];
-    $.each(CAR_STATE.manufacturerNames, (i, name) => {
+    const manufacturerNames = [...new Set(
+        API_STATE.manufacturers.map(x => x.name).concat(API_STATE.cars.map(x => x.manufacturer))
+    )];
+    manufacturerNames.sort((a, b) => a.localeCompare(b));
+    $.each(manufacturerNames, (i, name) => {
         CAR_STATE.$manufacturer.append(`<option value=${name}>${name}</option>`);
     })
 
@@ -67,25 +71,22 @@ function showCarDetails(id) {
     CAR_STATE.$name.val(car.name);
     CAR_STATE.$consumption.val(car.consumption);
     CAR_STATE.$color.val(car.color);
-    if (car.manufacturer && !CAR_STATE.manufacturerNames.includes(car.manufacturer)) {
-        CAR_STATE.$manufacturer.append(`<option value=${car.manufacturer}>${car.manufacturer}</option>`);
-    }
     CAR_STATE.$manufacturer.val(car.manufacturer);
     CAR_STATE.$available.val(car.avaiable ? car.avaiable : car.available);
     CAR_STATE.$year.val(car.year);
     CAR_STATE.$horsepower.val(car.horsepower);
 
-    $(".item-details form").removeClass("hidden");
-    $(".item-details .placeholder").addClass("hidden");
+    $(".item-details form").show();
+    $(".item-details .placeholder").hide();
 
     $(".list-item-select").removeClass("list-item-select-active");
     $(".list-item-add").removeClass("list-item-add-active");
 
     if (id) {
-        $(".form-button-delete").removeClass("hidden");
-        $(`.list-item-select[data-car-id="${id}"]`).addClass("list-item-select-active");
+        $(".form-button-delete").show()
+        $(`.list-item-select[data-car-id="${id}"]`).addClass("list-item-select-active")
     } else {
-        $(".form-button-delete").addClass("hidden");
+        $(".form-button-delete").hide();
         $(".list-item-add").addClass("list-item-add-active");
     }
 }
@@ -104,14 +105,14 @@ async function submitCar(data) {
     showCarDetails(cars[cars.length - 1]._id);
 }
 
-async function deleteCar() {
-    await deleteCarApi(CAR_STATE.id);
+async function removeCar() {
+    await deleteCar(CAR_STATE.id);
 
     showNotification("Gyártó sikeresen törölve.");
     buildCarsList();
 
-    $(".item-details form").addClass("hidden");
-    $(".item-details .placeholder").removeClass("hidden");
+    $(".item-details form").hide();
+    $(".item-details .placeholder").show();
 
     $(".list-item-select").removeClass("list-item-select-active");
     $(".list-item-add").removeClass("list-item-add-active");

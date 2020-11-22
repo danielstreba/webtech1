@@ -4,7 +4,7 @@
         <input type="button" value="Új hozzáadása" onclick="showCarDetails()" class="list-item list-item-add"/>
     </div>
     <div class="item-details">
-        <form class="hidden">
+        <form>
             <h2>Autó</h2>
             <div class="form-line">
                 <label for="car-name">Név:</label>
@@ -37,7 +37,7 @@
             </div>
             <div class="form-footer">
                 <input type="submit" class="form-button form-button-submit" value="Mentés"/>
-                <input type="button" onclick="deleteCar()" class="form-button form-button-delete" value="Törlés"/>
+                <input type="button" onclick="removeCar()" class="form-button form-button-delete" value="Törlés"/>
             </div>
         </form>
         <div class="placeholder">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;700&display=swap");
 
 :root {
     --white-medium: #f7f7f7;
@@ -13,10 +13,14 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
     height: 100%;
     background-color: var(--white-medium);
     color: var(--black-medium);
+}
+
+span.monospace {
+    font-family: "Roboto Mono", monospace;
 }
 
 header {
@@ -41,16 +45,17 @@ header a {
     padding: 0 10px;
 }
 
-header a.active, header a:hover {
+header a.active,
+header a:hover {
+    color: var(--green);
+}
+
+.container a {
     color: var(--green);
 }
 
 header a.active {
     font-weight: bold;
-}
-
-.hidden {
-    display: none !important;
 }
 
 .body-wrapper {
@@ -59,7 +64,7 @@ header a.active {
     height: 100%;
 }
 
-.container {
+.container-wrapper {
     flex: 1 0 auto;
     width: 900px;
     margin: 0 auto;
@@ -77,8 +82,8 @@ p {
 
 img {
     display: block;
-    margin: 0 auto;
-    max-width: 90%;
+    margin: 25px auto;
+    max-width: 60%;
     height: auto;
 }
 
@@ -91,6 +96,10 @@ img {
 .list-item {
     margin-bottom: 10px;
     padding: 10px;
+}
+
+.list-item:last-child {
+    margin-bottom: 0;
 }
 
 .list-item-select {
@@ -117,7 +126,9 @@ img {
     text-align: center;
 }
 
-input, button, select {
+input,
+button,
+select {
     font-family: inherit;
     font-size: 100%;
     outline: none;
@@ -151,7 +162,8 @@ button {
     font-weight: bold;
 }
 
-.manufacturer-container, .car-container {
+.manufacturer-container,
+.car-container {
     display: flex;
 }
 
@@ -164,11 +176,18 @@ button {
 
 form h2 {
     margin: -20px;
-    background-color: var(--green);
     color: var(--white-medium);
     padding: 12.5px;
     padding-left: 20px;
     margin-bottom: 25px;
+}
+
+.manufacturer-container form h2 {
+    background-color: var(--green);
+}
+
+.car-container form h2 {
+    background-color: var(--red);
 }
 
 .form-footer {
@@ -203,10 +222,22 @@ form h2 {
     color: var(--black-darker);
 }
 
-.form-line input, .form-line select {
+.form-line input,
+.form-line select {
     float: right;
     width: 250px;
     height: 20px;
     padding: 1.5px;
     margin: 0;
+}
+
+.list-item,
+.item-details,
+header,
+img {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+*:hover {
+    transition-duration: 0.25s;
 }

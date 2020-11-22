@@ -8,12 +8,20 @@ function initApp() {
 
     // loading spinner
     $.ajaxSetup({
-        beforeSend: startSpinner,
-        complete: stopSpinner
+        beforeSend: (xhr, settings) => {
+            if (!settings.url.endsWith(".html")) {
+                startSpinner();
+                xhr.always(stopSpinner);
+            }
+        }
     });
 
     // initialize body
-    $(document.body).load("body.html", loadPage);
+    $(document.body).load("body.html", () => {
+        $(".spinner-wrapper").hide();
+        $(".modal").hide();
+        loadPage();
+    });
 
     // routing
     $(window).on("hashchange", loadPage);
@@ -21,8 +29,8 @@ function initApp() {
 
 function errorHandler(_, xhr) {
     $(".error-message").html(`${xhr.status} ${xhr.statusText}`);
-    $(".modal").removeClass("hidden");
-    $(".body-wrapper > :not(.modal)").addClass("hidden");
+    $(".modal").show();
+    $(".body-wrapper > :not(.modal)").hide();
 }
 
 function loadPage() {
@@ -30,11 +38,15 @@ function loadPage() {
         ? window.location.hash.substring(1)
         : "home";
 
-    $(".container").load(`${page}.html`, () => {
-        $("a.active").removeClass("active");
-        $(`a[href="#${page}"]`).addClass("active");
+    $(".container").fadeOut(100, () => {
+        $(".container").load(`${page}.html`, () => {
+            $("a.active").removeClass("active");
+            $(`a[href="#${page}"]`).addClass("active");
 
-        initPage(page);
+            initPage(page);
+
+            $(".container").fadeIn(100);
+        })
     });
 }
 
@@ -53,36 +65,3 @@ function initPage(page) {
             break;
     }
 }
-
-function startSpinner() {
-    if (API_STATE.runningRequests++ <= 0) {
-        // remove setTimeout when async/await fixed
-        setTimeout(() => {
-            $(".body-wrapper").addClass("hidden");
-            $(".spinner-wrapper").removeClass("hidden");
-        }, 45);
-    }
-}
-
-function stopSpinner() {
-    // remove setTimeout when async/await fixed
-    setTimeout(() => {
-        if (--API_STATE.runningRequests <= 0) {
-            $(".body-wrapper").removeClass("hidden");
-            $(".spinner-wrapper").addClass("hidden");
-        }
-    }, 0);
-}
-
-function showNotification(message) {
-    const $snackbar = $("#snackbar");
-    if (!$snackbar.hasClass("show")) {
-        $snackbar.html(message);
-        $snackbar.addClass("show");
-        setTimeout(() => {
-            $snackbar.removeClass("show");
-        }, 3000);
-    }
-}
-
-

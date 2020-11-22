@@ -18,6 +18,8 @@ async function initManufacturers() {
 
     buildManufacturersList();
 
+    $(".item-details form").hide();
+
     $(".item-details form").on("submit",
         (event) => {
             event.preventDefault();
@@ -53,17 +55,17 @@ function showManufacturerDetails(id) {
     MANUFACTURER_STATE.$country.val(manufacturer.country);
     MANUFACTURER_STATE.$founded.val(manufacturer.founded);
 
-    $(".item-details form").removeClass("hidden");
-    $(".item-details .placeholder").addClass("hidden");
+    $(".item-details form").show();
+    $(".item-details .placeholder").hide();
 
     $(".list-item-select").removeClass("list-item-select-active");
     $(".list-item-add").removeClass("list-item-add-active");
 
     if (id) {
-        $(".form-button-delete").removeClass("hidden");
+        $(".form-button-delete").show();
         $(`.list-item-select[data-manufacturer-id="${id}"]`).addClass("list-item-select-active");
     } else {
-        $(".form-button-delete").addClass("hidden");
+        $(".form-button-delete").hide();
         $(".list-item-add").addClass("list-item-add-active");
     }
 }
@@ -82,14 +84,14 @@ async function submitManufacturer(data) {
     showManufacturerDetails(manufacturers[manufacturers.length - 1]._id);
 }
 
-async function deleteManufacturer() {
-    await deleteManufacturerApi(MANUFACTURER_STATE.id);
+async function removeManufacturer() {
+    await deleteManufacturer(MANUFACTURER_STATE.id);
 
     showNotification("Gyártó sikeresen törölve.");
     buildManufacturersList();
 
-    $(".item-details form").addClass("hidden");
-    $(".item-details .placeholder").removeClass("hidden");
+    $(".item-details form").hide();
+    $(".item-details .placeholder").show();
 
     $(".list-item-select").removeClass("list-item-select-active");
     $(".list-item-add").removeClass("list-item-add-active");

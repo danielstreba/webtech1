@@ -38,11 +38,11 @@ async function postManufacturer(form) {
 }
 
 async function patchManufacturer(form, id) {
-    await deleteManufacturerApi(id);
+    await deleteManufacturer(id);
     await postManufacturer(form);
 }
 
-async function deleteManufacturerApi(id) {
+async function deleteManufacturer(id) {
     await $.ajax({
         url: API_URL + "/api/manufacturers/" + id,
         type: "DELETE"
@@ -51,7 +51,6 @@ async function deleteManufacturerApi(id) {
 }
 
 async function postCar(form) {
-    console.log(form);
     await $.post({
         url: API_URL + "/api/cars",
         data: JSON.stringify(form),
@@ -61,11 +60,11 @@ async function postCar(form) {
 }
 
 async function patchCar(form, id) {
-    await deleteCarApi(id);
+    await deleteCar(id);
     await postCar(form);
 }
 
-async function deleteCarApi(id) {
+async function deleteCar(id) {
     await $.ajax({
         url: API_URL + "/api/cars/" + id,
         type: "DELETE"
