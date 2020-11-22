@@ -18,7 +18,9 @@ async function getCars() {
     API_STATE.cars = await $.get({
         url: API_URL + "/api/cars"
     });
-    API_STATE.manufacturers.sort((a, b) => a.name.localeCompare(b.name));
+    API_STATE.cars.sort((a, b) =>
+        a.manufacturer.localeCompare(b.manufacturer) ||
+        a.name.localeCompare(b.name));
 }
 
 async function getManufacturers() {

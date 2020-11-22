@@ -54,7 +54,7 @@ function buildCarsList() {
     )];
     manufacturerNames.sort((a, b) => a.localeCompare(b));
     $.each(manufacturerNames, (i, name) => {
-        CAR_STATE.$manufacturer.append(`<option value=${name}>${name}</option>`);
+        CAR_STATE.$manufacturer.append(`<option value="${name}">${name}</option>`);
     })
 
     // adding onclick handler to the previously built list items
