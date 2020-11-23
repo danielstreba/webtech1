@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;700&display=swap");
+
+:root {
+    --white-medium: #f7f7f7;
+    --black-medium: #404040;
+    --white-darker: #dedede;
+    --green: #4ccc70;
+    --black-darker: #24292e;
+    --red: #ca3131;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    height: 100%;
+    background-color: var(--white-medium);
+    color: var(--black-medium);
+}
+
+span.monospace {
+    font-family: "Roboto Mono", monospace;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--black-darker);
+    color: var(--white-medium);
+    padding: 15px;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: x-large;
+    padding: 0 10px;
+    margin: 0;
+}
+
+header a {
+    color: var(--white-medium);
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+header a.active,
+header a:hover {
+    color: var(--green);
+}
+
+.container a {
+    color: var(--green);
+}
+
+header a.active {
+    font-weight: bold;
+}
+
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container-wrapper {
+    flex: 1 0 auto;
+    width: 900px;
+    margin: 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+img {
+    display: block;
+    margin: 25px auto;
+    max-width: 60%;
+    height: auto;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.list-item {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.list-item:last-child {
+    margin-bottom: 0;
+}
+
+.list-item-select {
+    background-color: white;
+    text-align: left;
+}
+
+.list-item-select__right {
+    float: right;
+    color: grey;
+    font-size: small;
+}
+
+.placeholder {
+    text-align: center;
+    padding: 50px;
+    color: grey;
+}
+
+.list-item-add {
+    background-color: var(--black-darker);
+    color: var(--white-medium);
+    font-weight: bold;
+    text-align: center;
+}
+
+input,
+button,
+select {
+    font-family: inherit;
+    font-size: 100%;
+    outline: none;
+}
+
+input[type="submit"],
+input[type="button"],
+button {
+    border: 0;
+}
+
+#car-manufacturer {
+    width: 257px;
+    height: 27px;
+}
+
+.list-item-add:hover,
+.list-item-add-active {
+    color: var(--green);
+}
+
+.list-item-select:hover,
+.list-item-select-active {
+    background-color: var(--white-darker);
+}
+
+.list-item:hover,
+.list-item-select-active,
+.list-item-add-active {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.manufacturer-container,
+.car-container {
+    display: flex;
+}
+
+.item-details {
+    flex: 1;
+    background-color: white;
+    margin-left: 10px;
+    padding: 20px;
+}
+
+form h2 {
+    margin: -20px;
+    color: var(--white-medium);
+    padding: 12.5px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.manufacturer-container form h2 {
+    background-color: var(--green);
+}
+
+.car-container form h2 {
+    background-color: var(--red);
+}
+
+.form-footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.form-button {
+    padding: 10px;
+    background-color: var(--black-darker);
+    color: var(--white-medium);
+    font-weight: bold;
+    text-align: center;
+    margin: 0 12.5px;
+}
+
+.form-button-submit {
+    background-color: var(--green);
+}
+
+.form-button-delete {
+    background-color: var(--red);
+}
+
+.form-line {
+    margin-bottom: 12.5px;
+    height: 22.5px;
+}
+
+.form-button:hover {
+    cursor: pointer;
+    color: var(--black-darker);
+}
+
+.form-line input,
+.form-line select {
+    float: right;
+    width: 250px;
+    height: 20px;
+    padding: 1.5px;
+    margin: 0;
+}
+
+.list-item,
+.item-details,
+header,
+img {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+*:hover {
+    transition-duration: 0.25s;
+}
